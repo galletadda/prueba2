@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galletadda - Chocochips que animan tu día</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-white text-slate-800 antialiased flex flex-col min-h-screen">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('hero')">
+                    <div class="w-10 h-10 rounded-full bg-brand-500 text-white flex items-center justify-center font-bold text-xl shadow-md">
+                        <i class="fa-solid fa-cookie-bite"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold bg-gradient-to-r from-brand-600 to-sky-400 bg-clip-text text-transparent">Galletadda</span>
+                        <span class="block text-[10px] text-slate-400 font-medium tracking-widest uppercase">Chocochips que animan tu día</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
+                    <a href="#catalogo" class="hover:text-brand-600 transition">Catálogo</a>
+                    <a href="#nosotros" class="hover:text-brand-600 transition">Nosotros</a>
+                    <a href="#faqs" class="hover:text-brand-600 transition">Preguntas Frecuentes</a>
+                    <a href="#contacto" class="hover:text-brand-600 transition">Contacto</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="flex items-center space-x-3">
+                    <button onclick="toggleCartDrawer()" class="relative p-2 text-slate-600 hover:text-brand-600 transition rounded-full hover:bg-slate-50">
+                        <i class="fa-solid fa-bag-shopping text-xl"></i>
+                        <span id="cartBadge" class="absolute -top-1 -right-1 bg-brand-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                    </button>
+                    <button onclick="openAdminModal()" class="p-2 text-slate-400 hover:text-brand-600 transition rounded-full hover:bg-slate-50" title="Panel Admin">
+                        <i class="fa-solid fa-user-gear text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow">
+
+        <!-- HERO SECTION -->
+        <section id="hero" class="relative py-12 lg:py-20 bg-gradient-to-b from-brand-50/60 to-white overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="text-center lg:text-left space-y-6">
+                        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-brand-100 text-brand-700">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Recién Horneadas Todos los Días
+                        </span>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                            Galletas artesanas con el sabor <span class="text-brand-600">perfecto</span>
+                        </h1>
+                        <p class="text-slate-600 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-normal">
+                            Ingredientes 100% naturales, mantequilla pura y chocolate de especialidad. Elige tu paquete favorito y lo entregamos en tu puerta frescas y deliciosas.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
+                            <a href="#catalogo" class="px-8 py-3.5 bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-2xl shadow-lg shadow-brand-500/25 transition transform hover:-translate-y-0.5 text-center">
+                                Ver Paquetes
+                            </a>
+                            <a href="#contacto" class="px-8 py-3.5 bg-white border border-slate-200 text-slate-700 font-semibold rounded-2xl hover:bg-slate-50 transition text-center">
+                                Contactanos
+                            </a>
+                        </div>
+                        <!-- Features badge -->
+                        <div class="pt-6 grid grid-cols-3 gap-4 border-t border-slate-100 text-center lg:text-left">
+                            <div>
+                                <p class="text-2xl font-bold text-slate-800">100%</p>
+                                <p class="text-xs text-slate-500">Artesanal</p>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-slate-800">24h</p>
+                                <p class="text-xs text-slate-500">Horneado Fresco</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative flex justify-center">
+                        <div class="relative w-full max-w-md lg:max-w-none">
+                            <div class="absolute -top-4 -left-4 w-72 h-72 bg-brand-300/30 rounded-full blur-3xl"></div>
+                            <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=800&q=80" alt="Galletas Artesanales" class="relative rounded-3xl shadow-2xl object-cover w-full h-[380px] sm:h-[450px] transform -rotate-1 hover:rotate-0 transition duration-500">
+                            <div class="absolute -bottom-6 -left-4 bg-white/95 backdrop-blur p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center text-amber-600 font-bold text-xl">
+                                    🍪
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 font-medium">Recomendado hoy</p>
+                                    <p class="text-sm font-bold text-slate-800">Paquete 20 Galletas</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATALOG SECTION -->
+        <section id="catalogo" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-brand-600 font-semibold text-xs uppercase tracking-wider">Nuestra Colección</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mt-1">Elige tu Paquete Perfecto</h2>
+                    <p class="text-slate-500 mt-2 text-sm sm:text-base">Pide tus galletas favoritas listas para regalar o disfrutar.</p>
+                </div>
+
+                <!-- Product Grid -->
+                <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Dynamic rendering via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="nosotros" class="py-16 bg-slate-50 border-y border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-4">
+                        <span class="text-brand-600 font-semibold text-xs uppercase tracking-wider">Nuestra Historia</span>
+                        <h2 class="text-3xl font-bold text-slate-900">Pasión por la repostería casera</h2>
+                        <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                            En <strong class="text-slate-800">Galletadda</strong> elaboramos cada lote a mano siguiendo la receta de la mamá. No utilizamos conservantes artificiales ni esencias sintéticas.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4 pt-4">
+                            <div class="p-4 bg-white rounded-2xl shadow-sm border border-slate-100">
+                                <i class="fa-solid fa-leaf text-brand-500 text-xl mb-2"></i>
+                                <h4 class="font-semibold text-slate-800 text-sm">Ingredientes Puros</h4>
+                                <p class="text-xs text-slate-500 mt-1">Harina no blanqueada y mantequilla real.</p>
+                            </div>
+                            <div class="p-4 bg-white rounded-2xl shadow-sm border border-slate-100">
+                                <i class="fa-solid fa-box-open text-brand-500 text-xl mb-2"></i>
+                                <h4 class="font-semibold text-slate-800 text-sm">Empaque en plástico</h4>
+                                <p class="text-xs text-slate-500 mt-1">Fundas que preservan la frescura.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="imagenes/hero-galletas.jpg" alt="Horno de galletas" class="rounded-3xl shadow-lg object-cover w-full h-80">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQS SECTION -->
+        <section id="faqs" class="py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-brand-600 font-semibold text-xs uppercase tracking-wider">Dudas Frecuentes</span>
+                    <h2 class="text-3xl font-bold text-slate-900 mt-1">Preguntas Frecuentes</h2>
+                    <p class="text-slate-500 text-sm mt-2">¿Tienes alguna pregunta? Encuentra las respuestas rápidas aquí.</p>
+                </div>
+
+                <div id="faqsContainer" class="space-y-4">
+                    <!-- Dynamic FAQs via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT & FOOTER -->
+        <section id="contacto" class="py-12 bg-slate-900 text-slate-300">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-12 border-b border-slate-800">
+                    <div>
+                        <div class="flex items-center space-x-2 text-white font-bold text-xl mb-4">
+                            <i class="fa-solid fa-cookie-bite text-brand-400"></i>
+                            <span>Chocochips que animan tu día</span>
+                        </div>
+                        <p class="text-sm text-slate-400 leading-relaxed">
+                            Galletas horneadas diariamente con los mejores ingredientes. Haz tu pedido online o contáctanos directamente.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold text-sm mb-4">Enlaces Rápidos</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#catalogo" class="hover:text-brand-400 transition">Paquetes Disponibles</a></li>
+                            <li><a href="#nosotros" class="hover:text-brand-400 transition">Sobre Nosotros</a></li>
+                            <li><a href="#faqs" class="hover:text-brand-400 transition">Preguntas Frecuentes</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold text-sm mb-4">Contacto Directo</h4>
+                        <ul class="space-y-2 text-sm text-slate-400">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-brand-400"></i> <span id="footerPhoneDisplay">+593 99 9562 568</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-brand-400"></i> andresriofriopasquel@gmail.com</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-brand-400"></i> Envíos a todo Quito</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+                    <p>&copy; <span id="year"></span> Galletadda. Todos los derechos reservados.</p>
+                    <button onclick="openAdminModal()" class="mt-2 sm:mt-0 text-slate-500 hover:text-brand-400 transition underline flex items-center gap-1">
+                        <i class="fa-solid fa-lock text-[10px]"></i> Acceso Panel Administración
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a id="floatingWhatsappBtn" href="#" target="_blank" class="fixed bottom-6 right-6 z-40 bg-emerald-500 hover:bg-emerald-600 text-white p-3.5 rounded-full shadow-2xl transition-all transform hover:scale-110 flex items-center justify-center group" title="Escríbenos por WhatsApp">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+        <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out font-medium text-xs pl-0 group-hover:pl-2">
+            ¡Haz tu pedido!
+        </span>
+    </a>
+
+    <!-- CART / CHECKOUT DRAWER OVERLAY -->
+    <div id="cartOverlay" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300" onclick="toggleCartDrawer()"></div>
+
+    <!-- CART SIDE DRAWER -->
+    <div id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+        <!-- Header -->
+        <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+            <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                <i class="fa-solid fa-cart-shopping text-brand-500"></i> Tu Carrito
+            </h3>
+            <button onclick="toggleCartDrawer()" class="text-slate-400 hover:text-slate-600 p-2 rounded-full">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Checkout Step Tabs -->
+        <div class="px-4 py-2 bg-slate-100/70 border-b border-slate-200/60 flex justify-between text-xs font-semibold text-slate-500">
+            <span id="stepTab1" class="text-brand-600 border-b-2 border-brand-600 pb-0.5">1. Productos</span>
+            <span id="stepTab2" class="">2. Datos</span>
+            <span id="stepTab3" class="">3. Pago</span>
+        </div>
+
+        <!-- Drawer Body Dynamic Content -->
+        <div class="flex-grow overflow-y-auto p-4 hide-scrollbar" id="drawerBody">
+            
+            <!-- STEP 1: CART ITEMS -->
+            <div id="stepCart" class="space-y-4">
+                <div id="cartItemsList" class="space-y-3">
+                    <!-- Dynamic rendering -->
+                </div>
+            </div>
+
+            <!-- STEP 2: CUSTOMER FORM -->
+            <div id="stepForm" class="hidden space-y-4">
+                <h4 class="font-bold text-slate-800 text-sm border-b pb-2">Información para la Entrega</h4>
+                <div>
+                    <label class="block text-xs font-medium text-slate-600 mb-1">Nombre Completo *</label>
+                    <input type="text" id="custName" class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 outline-none" placeholder="Ej. Ana García">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-600 mb-1">Teléfono (WhatsApp) *</label>
+                    <input type="tel" id="custPhone" class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 outline-none" placeholder="Ej. 0991234567">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-600 mb-1">Dirección de Entrega *</label>
+                    <textarea id="custAddress" rows="2" class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 outline-none" placeholder="Calle principal, número de casa, referencia..."></textarea>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-600 mb-1">Fecha Entrega *</label>
+                        <input type="date" id="custDate" class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-600 mb-1">Hora Aprox.</label>
+                        <select id="custTime" class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 outline-none">
+                            <option value="Mañana (9:00 - 12:00)">Mañana</option>
+                            <option value="Tarde (14:00 - 18:00)">Tarde</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-600 mb-1">Notas Especiales (Opcional)</label>
+                    <input type="text" id="custNotes" class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 outline-none" placeholder="Dedicatoria o sabores de preferencia...">
+                </div>
+            </div>
+
+            <!-- STEP 3: PAYMENT METHOD -->
+            <div id="stepPayment" class="hidden space-y-4">
+                <h4 class="font-bold text-slate-800 text-sm border-b pb-2">Selecciona Método de Pago</h4>
+                
+                <div class="space-y-2">
+                    <label class="flex items-center p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                        <input type="radio" name="paymentMethod" value="WhatsApp" checked class="text-brand-500 focus:ring-brand-500" onchange="togglePaymentSimulator(false)">
+                        <div class="ml-3 flex items-center justify-between w-full">
+                            <span class="text-sm font-semibold text-slate-800">Pedido directo vía WhatsApp</span>
+                            <i class="fa-brands fa-whatsapp text-emerald-500 text-lg"></i>
+                        </div>
+                    </label>
+
+                    <label class="flex items-center p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                        <input type="radio" name="paymentMethod" value="Tarjeta" class="text-brand-500 focus:ring-brand-500" onchange="togglePaymentSimulator(true)">
+                        <div class="ml-3 flex items-center justify-between w-full">
+                            <span class="text-sm font-semibold text-slate-800">Tarjeta de Crédito / Débito (Stripe / PayPhone)</span>
+                            <i class="fa-solid fa-credit-card text-brand-500 text-lg"></i>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- CARD SIMULATOR FORM -->
+                <div id="cardSimulatorForm" class="hidden p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3 mt-3">
+                    <p class="text-xs font-semibold text-slate-500 flex items-center gap-1">
+                        <i class="fa-solid fa-lock text-emerald-600"></i> Pasarela Segura (Simulación de Pago)
+                    </p>
+                    <div>
+                        <label class="block text-[11px] font-medium text-slate-500">Número de Tarjeta</label>
+                        <input type="text" id="cardNumber" placeholder="4532 •••• •••• 8890" maxlength="19" class="w-full text-xs px-3 py-2 border rounded-lg bg-white">
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-[11px] font-medium text-slate-500">MM/AA</label>
+                            <input type="text" id="cardExp" placeholder="12/28" maxlength="5" class="w-full text-xs px-3 py-2 border rounded-lg bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-medium text-slate-500">CVC</label>
+                            <input type="password" id="cardCvc" placeholder="123" maxlength="3" class="w-full text-xs px-3 py-2 border rounded-lg bg-white">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 4: CONFIRMATION -->
+            <div id="stepConfirmation" class="hidden text-center py-8 space-y-4">
+                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <h3 class="text-2xl font-extrabold text-slate-900">¡Pedido Confirmado!</h3>
+                <p class="text-xs text-slate-500">Tu número de orden es:</p>
+                <div id="orderCodeDisplay" class="inline-block px-4 py-2 bg-brand-50 text-brand-700 font-mono font-bold text-lg rounded-xl border border-brand-200">
+                    #DA-0000
+                </div>
+                <p class="text-xs text-slate-600 max-w-xs mx-auto">
+                    Hemos registrado tus datos. Si elegiste WhatsApp, haz clic a continuación para enviar el resumen del pedido.
+                </p>
+                <div id="whatsappConfirmAction">
+                    <!-- Button populated via JS -->
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Drawer Footer (Calculations & Controls) -->
+        <div id="drawerFooter" class="p-4 border-t border-slate-100 bg-slate-50 space-y-3">
+            <div class="space-y-1 text-xs text-slate-600">
+                <div class="flex justify-between">
+                    <span>Subtotal</span>
+                    <span id="cartSubtotal" class="font-semibold">$0.00</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Costo de Envío</span>
+                    <span id="cartShipping" class="font-semibold">$0.00</span>
+                </div>
+                <div class="flex justify-between text-sm font-bold text-slate-900 pt-2 border-t border-slate-200">
+                    <span>Total</span>
+                    <span id="cartTotal" class="text-brand-600">$0.00</span>
+                </div>
+            </div>
+
+            <div class="flex gap-2">
+                <button id="btnBackStep" onclick="navigateCartStep(-1)" class="w-1/3 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium text-xs rounded-xl transition hidden">
+                    Atrás
+                </button>
+                <button id="btnNextStep" onclick="navigateCartStep(1)" class="flex-grow py-2.5 bg-brand-500 hover:bg-brand-600 text-white font-semibold text-xs rounded-xl shadow-md transition">
+                    Continuar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN LOGIN / CONTROL PANEL MODAL -->
+    <div id="adminModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-3xl overflow-hidden max-h-[90vh] flex flex-col">
+            
+            <!-- Modal Header -->
+            <div class="p-5 bg-slate-900 text-white flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-sliders text-brand-400 text-xl"></i>
+                    <h3 class="font-bold text-lg">Panel de Administración</h3>
+                </div>
+                <button onclick="closeAdminModal()" class="text-slate-400 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Login View -->
+            <div id="adminLoginView" class="p-8 text-center space-y-4 my-auto">
+                <div class="w-12 h-12 bg-brand-100 text-brand-600 rounded-2xl flex items-center justify-center mx-auto text-xl">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h4 class="text-xl font-bold text-slate-800">Acceso Requerido</h4>
+                <p class="text-xs text-slate-500">Ingresa la clave de administrador para gestionar productos y pedidos.</p>
+                <div class="max-w-xs mx-auto space-y-2">
+                    <input type="password" id="adminPassword" placeholder="Contraseña (Default: galletadda2023)" class="w-full px-4 py-2 text-sm border border-slate-300 rounded-xl outline-none focus:ring-2 focus:ring-brand-500">
+                    <button onclick="checkAdminPassword()" class="w-full py-2.5 bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs rounded-xl transition shadow">
+                        Ingresar al Panel
+                    </button>
+                    <p id="loginError" class="text-xs text-rose-500 hidden font-medium">No no no esa no es la galletraseña. Intenta nuevamente.</p>
+                </div>
+            </div>
+
+            <!-- Admin Panel Dashboard Content -->
+            <div id="adminDashboardView" class="hidden flex-grow flex flex-col overflow-hidden">
+                
+                <!-- Nav Tabs -->
+                <div class="flex border-b border-slate-200 bg-slate-50 px-4 text-xs font-semibold text-slate-600">
+                    <button onclick="switchAdminTab('products')" id="tabBtnProducts" class="py-3 px-4 text-brand-600 border-b-2 border-brand-600">Productos</button>
+                    <button onclick="switchAdminTab('orders')" id="tabBtnOrders" class="py-3 px-4 hover:text-brand-600">Pedidos Received</button>
+                    <button onclick="switchAdminTab('settings')" id="tabBtnSettings" class="py-3 px-4 hover:text-brand-600">Configuración & FAQs</button>
+                </div>
+
+                <div class="p-6 overflow-y-auto flex-grow hide-scrollbar">
+                    
+                    <!-- TAB 1: PRODUCTS MANAGEMENT -->
+                    <div id="adminTabProducts" class="space-y-6">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-bold text-slate-800">Catálogo de Paquetes</h4>
+                            <button onclick="openProductEditModal(null)" class="px-3 py-1.5 bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold rounded-lg flex items-center gap-1">
+                                <i class="fa-solid fa-plus"></i> Nuevo Paquete
+                            </button>
+                        </div>
+
+                        <div class="overflow-x-auto border border-slate-200 rounded-2xl">
+                            <table class="w-full text-left border-collapse text-xs">
+                                <thead>
+                                    <tr class="bg-slate-50 text-slate-600 border-b border-slate-200">
+                                        <th class="p-3">Imagen</th>
+                                        <th class="p-3">Nombre</th>
+                                        <th class="p-3">Galletas</th>
+                                        <th class="p-3">Precio</th>
+                                        <th class="p-3 text-right">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminProductsTable">
+                                    <!-- Dynamic Rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: ORDERS MANAGEMENT -->
+                    <div id="adminTabOrders" class="hidden space-y-4">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-bold text-slate-800">Historial de Pedidos</h4>
+                            <button onclick="clearAllOrders()" class="text-xs text-rose-500 hover:underline">Limpiar Historial</button>
+                        </div>
+                        <div class="overflow-x-auto border border-slate-200 rounded-2xl">
+                            <table class="w-full text-left border-collapse text-xs">
+                                <thead>
+                                    <tr class="bg-slate-50 text-slate-600 border-b border-slate-200">
+                                        <th class="p-3">Código</th>
+                                        <th class="p-3">Cliente</th>
+                                        <th class="p-3">Fecha Entrega</th>
+                                        <th class="p-3">Total</th>
+                                        <th class="p-3">Pago</th>
+                                        <th class="p-3">Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminOrdersTable">
+                                    <!-- Dynamic Rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: SETTINGS & FAQS -->
+                    <div id="adminTabSettings" class="hidden space-y-6">
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-4">
+                            <h4 class="font-bold text-slate-800 text-sm">Ajustes del Negocio</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-600 mb-1">Número WhatsApp (Con código país, sin +)</label>
+                                    <input type="text" id="settingPhone" class="w-full text-xs px-3 py-2 border rounded-xl bg-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-600 mb-1">Costo de Envío ($)</label>
+                                    <input type="number" step="0.5" id="settingShipping" class="w-full text-xs px-3 py-2 border rounded-xl bg-white">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-slate-600 mb-1">Mensaje Bienvenida Flotante</label>
+                                <input type="text" id="settingMessage" class="w-full text-xs px-3 py-2 border rounded-xl bg-white">
+                            </div>
+                            <button onclick="saveSettings()" class="px-4 py-2 bg-brand-500 text-white font-semibold text-xs rounded-xl shadow">
+                                Guardar Ajustes
+                            </button>
+                        </div>
+
+                        <!-- FAQs Management -->
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-bold text-slate-800 text-sm">Gestionar FAQs</h4>
+                                <button onclick="addNewFaq()" class="px-3 py-1 bg-slate-200 hover:bg-slate-300 text-xs font-medium rounded-lg">
+                                    + Agregar Pregunta
+                                </button>
+                            </div>
+                            <div id="adminFaqsList" class="space-y-3">
+                                <!-- Dynamic FAQs editing -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCT EDIT MODAL -->
+    <div id="productEditModal" class="fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl p-6 max-w-md w-full space-y-4 shadow-2xl">
+            <h4 id="productModalTitle" class="font-bold text-slate-800 text-base">Editar Producto</h4>
+            <input type="hidden" id="editProductId">
+            <div>
+                <label class="block text-xs font-medium text-slate-600 mb-1">Nombre del Paquete</label>
+                <input type="text" id="editProductName" class="w-full text-xs px-3 py-2 border rounded-xl">
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+                <div>
+                    <label class="block text-xs font-medium text-slate-600 mb-1">Precio ($)</label>
+                    <input type="number" step="0.5" id="editProductPrice" class="w-full text-xs px-3 py-2 border rounded-xl">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-600 mb-1">Cant. Galletas</label>
+                    <input type="number" id="editProductCount" class="w-full text-xs px-3 py-2 border rounded-xl">
+                </div>
+            </div>
+            <div>
+                <label class="block text-xs font-medium text-slate-600 mb-1">Descripción</label>
+                <textarea id="editProductDesc" rows="2" class="w-full text-xs px-3 py-2 border rounded-xl"></textarea>
+            </div>
+            <div>
+                <label class="block text-xs font-medium text-slate-600 mb-1">URL de Imagen (Local o Web)</label>
+                <input type="text" id="editProductImg" placeholder="imagenes/galleta1.jpg o https://..." class="w-full text-xs px-3 py-2 border rounded-xl">
+            </div>
+            <div class="flex justify-end space-x-2 pt-2">
+                <button onclick="closeProductEditModal()" class="px-4 py-2 text-xs text-slate-500 hover:bg-slate-100 rounded-xl">Cancelar</button>
+                <button onclick="saveProduct()" class="px-4 py-2 text-xs bg-brand-500 text-white font-semibold rounded-xl">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Default initial data for catalog
+        const defaultProducts = [
+            { id: 'p1', name: 'Galletadda (10 Galletas)', count: 10, price: 5.00, desc: 'Ideal para compartir en pareja o disfrutar durante la semana.', image: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80' },
+            { id: 'p2', name: 'Doble Galletadda (20 Galletas)', count: 20, price: 7.00, desc: 'Porque unas 20 galletas a la semana no hacen daño. El más popular.', image: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=80' },
+            { id: 'p3', name: 'Triple Galletadda (30 Galletas)', count: 30, price: 10.00, desc: 'Perfecto para reuniones, cumpleaños e incentivos de oficina.', image: 'https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?auto=format&fit=crop&w=600&q=80' },
+            { id: 'p4', name: 'Super Galletadda (50 Galletas)', count: 50, price: 17.00, desc: 'Deliciosas y perfectas para un gran regalo.', image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80' },
+            { id: 'p5', name: 'Mega Galletadda (100 Galletas)', count: 100, price: 30.00, desc: 'Gran volumen y excelente sabor.', image: 'https://images.unsplash.com/photo-1570476553177-3e1149a4f479?auto=format&fit=crop&w=600&q=80' }
+        ];
+
+        const defaultFaqs = [
+            { question: '¿Con cuánto tiempo de anticipación debo hacer mi pedido?', answer: 'Recomendamos realizar tu pedido con al menos 24 a 48 horas de anticipación para garantizar el horneado fresco del día.' },
+            { question: '¿Son deliciosas?', answer: 'Son las mejores galletas artesanales que probarás!.' },
+            { question: '¿Cuánto tiempo se conservan frescas las galletas?', answer: 'Nuestras galletas se mantienen crujientes y deliciosas hasta por 5 días dentro de su empaque sellado a temperatura ambiente.' }
+        ];
+
+        const defaultSettings = {
+            whatsappNumber: '593999562568',
+            welcomeMessage: '¡Hola! Quisiera información sobre sus paquetes de galletas artesanales.'
+        };
+
+        // App state initialize
+        let products = JSON.parse(localStorage.getItem('da_products')) || defaultProducts;
+        let faqs = JSON.parse(localStorage.getItem('da_faqs')) || defaultFaqs;
+        let settings = JSON.parse(localStorage.getItem('da_settings')) || defaultSettings;
+        let orders = JSON.parse(localStorage.getItem('da_orders')) || [];
+        let cart = JSON.parse(localStorage.getItem('da_cart')) || [];
+        let currentCartStep = 1;
+
+        window.onload = function() {
+            document.getElementById('year').innerText = new Date().getFullYear();
+            renderProducts();
+            renderFaqs();
+            updateCartUI();
+            updateFloatingWhatsapp();
+            renderAdminProducts();
+            renderAdminOrders();
+            loadSettingsToInputs();
+        };
+
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = products.map(p => `
+                <div class="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition duration-300 overflow-hidden flex flex-col group">
+                    <div class="relative h-52 overflow-hidden bg-slate-100">
+                        <img src="${p.image}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 right-3 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-extrabold text-brand-600 shadow-sm">
+                            ${p.count} Galletas
+                        </span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-brand-600 transition">${p.name}</h3>
+                        <p class="text-xs text-slate-500 mt-2 flex-grow leading-relaxed">${p.desc}</p>
+                        <div class="mt-6 flex items-center justify-between pt-4 border-t border-slate-50">
+                            <div>
+                                <span class="text-xs text-slate-400 block">Precio</span>
+                                <span class="text-2xl font-black text-slate-900">$${parseFloat(p.price).toFixed(2)}</span>
+                            </div>
+                            <button onclick="addToCart('${p.id}')" class="px-4 py-2.5 bg-brand-50 hover:bg-brand-500 hover:text-white text-brand-600 font-bold text-xs rounded-xl transition flex items-center gap-2">
+                                <i class="fa-solid fa-cart-plus text-sm"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderFaqs() {
+            const container = document.getElementById('faqsContainer');
+            container.innerHTML = faqs.map((f, index) => `
+                <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(${index})" class="w-full p-4 text-left font-semibold text-slate-800 bg-slate-50/50 hover:bg-slate-50 flex justify-between items-center text-sm">
+                        <span>${f.question}</span>
+                        <i id="faqIcon-${index}" class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform"></i>
+                    </button>
+                    <div id="faqAns-${index}" class="hidden p-4 text-xs text-slate-600 border-t border-slate-100 bg-white leading-relaxed">
+                        ${f.answer}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleFaq(index) {
+            const ans = document.getElementById(`faqAns-${index}`);
+            const icon = document.getElementById(`faqIcon-${index}`);
+            ans.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cartDrawer');
+            const overlay = document.getElementById('cartOverlay');
+            const isOpen = !drawer.classList.contains('translate-x-full');
+
+            if (isOpen) {
+                drawer.classList.add('translate-x-full');
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+            } else {
+                drawer.classList.remove('translate-x-full');
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+            }
+        }
+
+        function addToCart(productId) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.qty++;
+            } else {
+                const product = products.find(p => p.id === productId);
+                cart.push({ ...product, qty: 1 });
+            }
+            saveCart();
+            updateCartUI();
+            toggleCartDrawer();
+        }
+
+        function updateCartQty(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) {
+                cart = cart.filter(i => i.id !== productId);
+            }
+            saveCart();
+            updateCartUI();
+        }
+
+        function saveCart() {
+            localStorage.setItem('da_cart', JSON.stringify(cart));
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cartBadge');
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            
+            if (totalItems > 0) {
+                badge.innerText = totalItems;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+
+            const list = document.getElementById('cartItemsList');
+            if (cart.length === 0) {
+                list.innerHTML = `
+                    <div class="text-center py-12 space-y-3">
+                        <i class="fa-solid fa-cookie text-4xl text-slate-200"></i>
+                        <p class="text-xs text-slate-400 font-medium">Tu carrito está vacío.</p>
+                    </div>
+                `;
+            } else {
+                list.innerHTML = cart.map(item => `
+                    <div class="flex items-center space-x-3 p-3 bg-slate-50 rounded-2xl border border-slate-100">
+                        <img src="${item.image}" class="w-14 h-14 object-cover rounded-xl">
+                        <div class="flex-grow min-w-0">
+                            <h5 class="text-xs font-bold text-slate-800 truncate">${item.name}</h5>
+                            <p class="text-xs text-brand-600 font-semibold">$${parseFloat(item.price).toFixed(2)}</p>
+                        </div>
+                        <div class="flex items-center space-x-1 bg-white border border-slate-200 rounded-lg p-1">
+                            <button onclick="updateCartQty('${item.id}', -1)" class="w-5 h-5 flex items-center justify-center text-xs text-slate-500 hover:bg-slate-100 rounded">-</button>
+                            <span class="text-xs font-bold w-5 text-center">${item.qty}</span>
+                            <button onclick="updateCartQty('${item.id}', 1)" class="w-5 h-5 flex items-center justify-center text-xs text-slate-500 hover:bg-slate-100 rounded">+</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const shipping = cart.length > 0 ? parseFloat(settings.shippingCost) : 0;
+            const total = subtotal + shipping;
+
+            document.getElementById('cartSubtotal').innerText = `$${subtotal.toFixed(2)}`;
+            document.getElementById('cartShipping').innerText = `$${shipping.toFixed(2)}`;
+            document.getElementById('cartTotal').innerText = `$${total.toFixed(2)}`;
+        }
+
+        function navigateCartStep(direction) {
+            if (cart.length === 0 && direction > 0) {
+                alert("Por favor agrega al menos un producto a tu carrito.");
+                return;
+            }
+
+            if (currentCartStep === 2 && direction > 0) {
+                // Validate customer details
+                const name = document.getElementById('custName').value.trim();
+                const phone = document.getElementById('custPhone').value.trim();
+                const address = document.getElementById('custAddress').value.trim();
+                const date = document.getElementById('custDate').value.trim();
+
+                if (!name || !phone || !address || !date) {
+                    alert("Por favor completa los campos obligatorios (*)");
+                    return;
+                }
+            }
+
+            currentCartStep += direction;
+            if (currentCartStep > 3) {
+                processCheckout();
+                return;
+            }
+            renderCartStepView();
+        }
+
+        function renderCartStepView() {
+            document.getElementById('stepCart').classList.toggle('hidden', currentCartStep !== 1);
+            document.getElementById('stepForm').classList.toggle('hidden', currentCartStep !== 2);
+            document.getElementById('stepPayment').classList.toggle('hidden', currentCartStep !== 3);
+            document.getElementById('stepConfirmation').classList.toggle('hidden', currentCartStep !== 4);
+
+            document.getElementById('stepTab1').className = currentCartStep >= 1 ? 'text-brand-600 font-bold border-b-2 border-brand-600 pb-0.5' : '';
+            document.getElementById('stepTab2').className = currentCartStep >= 2 ? 'text-brand-600 font-bold border-b-2 border-brand-600 pb-0.5' : '';
+            document.getElementById('stepTab3').className = currentCartStep >= 3 ? 'text-brand-600 font-bold border-b-2 border-brand-600 pb-0.5' : '';
+
+            const btnBack = document.getElementById('btnBackStep');
+            const btnNext = document.getElementById('btnNextStep');
+
+            if (currentCartStep === 1) {
+                btnBack.classList.add('hidden');
+                btnNext.innerText = 'Siguiente: Tus Datos';
+            } else if (currentCartStep === 2) {
+                btnBack.classList.remove('hidden');
+                btnNext.innerText = 'Siguiente: Pago';
+            } else if (currentCartStep === 3) {
+                btnBack.classList.remove('hidden');
+                btnNext.innerText = 'Confirmar Pedido';
+            } else {
+                document.getElementById('drawerFooter').classList.add('hidden');
+            }
+        }
+
+        function togglePaymentSimulator(show) {
+            document.getElementById('cardSimulatorForm').classList.toggle('hidden', !show);
+        }
+
+        function processCheckout() {
+            const orderCode = 'DA-' + Math.floor(1000 + Math.random() * 9000);
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const total = subtotal + parseFloat(settings.shippingCost);
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+            const newOrder = {
+                code: orderCode,
+                date: new Date().toLocaleDateString(),
+                customer: {
+                    name: document.getElementById('custName').value,
+                    phone: document.getElementById('custPhone').value,
+                    address: document.getElementById('custAddress').value,
+                    deliveryDate: document.getElementById('custDate').value,
+                    deliveryTime: document.getElementById('custTime').value,
+                    notes: document.getElementById('custNotes').value
+                },
+                items: [...cart],
+                total: total,
+                paymentMethod: paymentMethod,
+                status: 'Pendiente'
+            };
+
+            orders.unshift(newOrder);
+            localStorage.setItem('da_orders', JSON.stringify(orders));
+
+            // Setup WhatsApp message URL
+            let msg = `*NUEVO PEDIDO DE GALLETAS - ${orderCode}*\n\n`;
+            msg += `*Cliente:* ${newOrder.customer.name}\n`;
+            msg += `*Teléfono:* ${newOrder.customer.phone}\n`;
+            msg += `*Dirección:* ${newOrder.customer.address}\n`;
+            msg += `*Fecha de Entrega:* ${newOrder.customer.deliveryDate} (${newOrder.customer.deliveryTime})\n`;
+            if (newOrder.customer.notes) msg += `*Notas:* ${newOrder.customer.notes}\n`;
+            msg += `\n*RESUMEN:* \n`;
+            cart.forEach(i => {
+                msg += `- ${i.qty}x ${i.name} ($${(i.price * i.qty).toFixed(2)})\n`;
+            });
+            msg += `\n*Envío:* $${parseFloat(settings.shippingCost).toFixed(2)}`;
+            msg += `\n*TOTAL:* $${total.toFixed(2)}`;
+            msg += `\n*Método de Pago:* ${paymentMethod}`;
+
+            const waUrl = `https://wa.me/${settings.whatsappNumber}?text=${encodeURIComponent(msg)}`;
+
+            document.getElementById('orderCodeDisplay').innerText = `#${orderCode}`;
+            document.getElementById('whatsappConfirmAction').innerHTML = `
+                <a href="${waUrl}" target="_blank" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs rounded-xl shadow-lg w-full transition">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Enviar Pedido por WhatsApp
+                </a>
+            `;
+
+            // Reset Cart
+            cart = [];
+            saveCart();
+            updateCartUI();
+            renderAdminOrders();
+
+            currentCartStep = 4;
+            renderCartStepView();
+        }
+
+        function openAdminModal() {
+            document.getElementById('adminModal').classList.remove('hidden');
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminModal').classList.add('hidden');
+        }
+
+        function checkAdminPassword() {
+            const pass = document.getElementById('adminPassword').value;
+            if (pass === 'admin123') {
+                document.getElementById('adminLoginView').classList.add('hidden');
+                document.getElementById('adminDashboardView').classList.remove('hidden');
+            } else {
+                document.getElementById('loginError').classList.remove('hidden');
+            }
+        }
+
+        function switchAdminTab(tab) {
+            document.getElementById('adminTabProducts').classList.toggle('hidden', tab !== 'products');
+            document.getElementById('adminTabOrders').classList.toggle('hidden', tab !== 'orders');
+            document.getElementById('adminTabSettings').classList.toggle('hidden', tab !== 'settings');
+
+            document.getElementById('tabBtnProducts').className = tab === 'products' ? 'py-3 px-4 text-brand-600 border-b-2 border-brand-600' : 'py-3 px-4 hover:text-brand-600';
+            document.getElementById('tabBtnOrders').className = tab === 'orders' ? 'py-3 px-4 text-brand-600 border-b-2 border-brand-600' : 'py-3 px-4 hover:text-brand-600';
+            document.getElementById('tabBtnSettings').className = tab === 'settings' ? 'py-3 px-4 text-brand-600 border-b-2 border-brand-600' : 'py-3 px-4 hover:text-brand-600';
+        }
+
+        function renderAdminProducts() {
+            const tbody = document.getElementById('adminProductsTable');
+            tbody.innerHTML = products.map(p => `
+                <tr class="border-b border-slate-100 hover:bg-slate-50">
+                    <td class="p-3"><img src="${p.image}" class="w-10 h-10 object-cover rounded-lg"></td>
+                    <td class="p-3 font-semibold text-slate-800">${p.name}</td>
+                    <td class="p-3 text-slate-500">${p.count} pcs</td>
+                    <td class="p-3 font-bold text-slate-800">$${parseFloat(p.price).toFixed(2)}</td>
+                    <td class="p-3 text-right space-x-2">
+                        <button onclick="openProductEditModal('${p.id}')" class="text-brand-600 hover:text-brand-800"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button onclick="deleteProduct('${p.id}')" class="text-rose-500 hover:text-rose-700"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function openProductEditModal(id) {
+            const modal = document.getElementById('productEditModal');
+            modal.classList.remove('hidden');
+
+            if (id) {
+                const p = products.find(prod => prod.id === id);
+                document.getElementById('productModalTitle').innerText = 'Editar Paquete';
+                document.getElementById('editProductId').value = p.id;
+                document.getElementById('editProductName').value = p.name;
+                document.getElementById('editProductPrice').value = p.price;
+                document.getElementById('editProductCount').value = p.count;
+                document.getElementById('editProductDesc').value = p.desc;
+                document.getElementById('editProductImg').value = p.image;
+            } else {
+                document.getElementById('productModalTitle').innerText = 'Nuevo Paquete';
+                document.getElementById('editProductId').value = '';
+                document.getElementById('editProductName').value = '';
+                document.getElementById('editProductPrice').value = '';
+                document.getElementById('editProductCount').value = '';
+                document.getElementById('editProductDesc').value = '';
+                document.getElementById('editProductImg').value = '';
+            }
+        }
+
+        function closeProductEditModal() {
+            document.getElementById('productEditModal').classList.add('hidden');
+        }
+
+        function saveProduct() {
+            const id = document.getElementById('editProductId').value;
+            const name = document.getElementById('editProductName').value;
+            const price = parseFloat(document.getElementById('editProductPrice').value) || 0;
+            const count = parseInt(document.getElementById('editProductCount').value) || 0;
+            const desc = document.getElementById('editProductDesc').value;
+            const image = document.getElementById('editProductImg').value || 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80';
+
+            if (!name || price <= 0) {
+                alert("Por favor ingresa un nombre y precio válidos.");
+                return;
+            }
+
+            if (id) {
+                const index = products.findIndex(p => p.id === id);
+                products[index] = { id, name, price, count, desc, image };
+            } else {
+                const newId = 'p' + Date.now();
+                products.push({ id: newId, name, price, count, desc, image });
+            }
+
+            localStorage.setItem('da_products', JSON.stringify(products));
+            renderProducts();
+            renderAdminProducts();
+            closeProductEditModal();
+        }
+
+        function deleteProduct(id) {
+            if (confirm("¿Seguro que deseas eliminar este producto?")) {
+                products = products.filter(p => p.id !== id);
+                localStorage.setItem('da_products', JSON.stringify(products));
+                renderProducts();
+                renderAdminProducts();
+            }
+        }
+
+        function renderAdminOrders() {
+            const tbody = document.getElementById('adminOrdersTable');
+            if (orders.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400">No hay pedidos registrados</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = orders.map(o => `
+                <tr class="border-b border-slate-100 hover:bg-slate-50">
+                    <td class="p-3 font-mono font-bold text-brand-600">#${o.code}</td>
+                    <td class="p-3">
+                        <p class="font-bold text-slate-800">${o.customer.name}</p>
+                        <p class="text-[10px] text-slate-400">${o.customer.phone}</p>
+                    </td>
+                    <td class="p-3 text-slate-600">${o.customer.deliveryDate}</td>
+                    <td class="p-3 font-bold text-slate-800">$${parseFloat(o.total).toFixed(2)}</td>
+                    <td class="p-3"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${o.paymentMethod === 'WhatsApp' ? 'bg-emerald-100 text-emerald-700' : 'bg-brand-100 text-brand-700'}">${o.paymentMethod}</span></td>
+                    <td class="p-3">
+                        <select onchange="updateOrderStatus('${o.code}', this.value)" class="text-[11px] p-1 border rounded bg-white font-medium">
+                            <option value="Pendiente" ${o.status === 'Pendiente' ? 'selected' : ''}>Pendiente</option>
+                            <option value="Completado" ${o.status === 'Completado' ? 'selected' : ''}>Completado</option>
+                            <option value="Cancelado" ${o.status === 'Cancelado' ? 'selected' : ''}>Cancelado</option>
+                        </select>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function updateOrderStatus(code, newStatus) {
+            const order = orders.find(o => o.code === code);
+            if (order) {
+                order.status = newStatus;
+                localStorage.setItem('da_orders', JSON.stringify(orders));
+            }
+        }
+
+        function clearAllOrders() {
+            if (confirm("¿Deseas vaciar todo el historial de pedidos?")) {
+                orders = [];
+                localStorage.setItem('da_orders', JSON.stringify(orders));
+                renderAdminOrders();
+            }
+        }
+
+        function loadSettingsToInputs() {
+            document.getElementById('settingPhone').value = settings.whatsappNumber;
+            document.getElementById('settingShipping').value = settings.shippingCost;
+            document.getElementById('settingMessage').value = settings.welcomeMessage;
+            document.getElementById('footerPhoneDisplay').innerText = '+' + settings.whatsappNumber;
+            renderAdminFaqs();
+        }
+
+        function saveSettings() {
+            settings.whatsappNumber = document.getElementById('settingPhone').value.trim();
+            settings.shippingCost = parseFloat(document.getElementById('settingShipping').value) || 0;
+            settings.welcomeMessage = document.getElementById('settingMessage').value.trim();
+
+            localStorage.setItem('da_settings', JSON.stringify(settings));
+            updateFloatingWhatsapp();
+            updateCartUI();
+            document.getElementById('footerPhoneDisplay').innerText = '+' + settings.whatsappNumber;
+            alert("Ajustes guardados correctamente.");
+        }
+
+        function updateFloatingWhatsapp() {
+            const btn = document.getElementById('floatingWhatsappBtn');
+            const msg = encodeURIComponent(settings.welcomeMessage);
+            btn.href = `https://wa.me/${settings.whatsappNumber}?text=${msg}`;
+        }
+
+        function renderAdminFaqs() {
+            const list = document.getElementById('adminFaqsList');
+            list.innerHTML = faqs.map((f, i) => `
+                <div class="p-3 bg-white border border-slate-200 rounded-xl space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-slate-700">Pregunta #${i+1}</span>
+                        <button onclick="deleteFaq(${i})" class="text-xs text-rose-500 hover:underline">Eliminar</button>
+                    </div>
+                    <input type="text" value="${f.question}" onchange="updateFaq(${i}, 'question', this.value)" class="w-full text-xs px-2 py-1 border rounded bg-slate-50" placeholder="Pregunta">
+                    <textarea onchange="updateFaq(${i}, 'answer', this.value)" class="w-full text-xs px-2 py-1 border rounded bg-slate-50" rows="2" placeholder="Respuesta">${f.answer}</textarea>
+                </div>
+            `).join('');
+        }
+
+        function addNewFaq() {
+            faqs.push({ question: 'Nueva Pregunta', answer: 'Escribe la respuesta aquí...' });
+            localStorage.setItem('da_faqs', JSON.stringify(faqs));
+            renderFaqs();
+            renderAdminFaqs();
+        }
+
+        function updateFaq(index, field, value) {
+            faqs[index][field] = value;
+            localStorage.setItem('da_faqs', JSON.stringify(faqs));
+            renderFaqs();
+        }
+
+        function deleteFaq(index) {
+            faqs.splice(index, 1);
+            localStorage.setItem('da_faqs', JSON.stringify(faqs));
+            renderFaqs();
+            renderAdminFaqs();
+        }
+
+        function navigateTo(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
